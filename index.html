@@ -15,16 +15,18 @@
     <!--Header-->
 
     <div id="header">
-        <div class="header-container">
+        <div class="container">
             <nav>
                 <img src="Images/logo.png" class="logo">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Objective</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Contact</a></li>
+                <ul id="sideMenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Objective</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
+                <i class="fas fa-solid fa-rectangle-xmark" onclick="closeMenu()"></i>
+                <i class="fas fa-solid fa-caret-down" onclick="openMenu()"></i>
             </nav>
         </div>
         <div class="header-text">
@@ -35,7 +37,7 @@
     <!--About-->
 
     <div id="about">
-        <div class="about-container">
+        <div class="container">
             <div class="about-row">
                 <div class="about-col-1">
                     <img src="Images/about.jpg">
@@ -82,7 +84,7 @@
     <!--Services-->
 
     <div id="services">
-        <div class="services-container">
+        <div class="container">
             <h1 class="sub-title">My Services</h1>
             <div class="services-list">
 
@@ -120,21 +122,73 @@
     <!--Portfolio-->
     <br>
     <div id="portfolio">
-        <div class="portfolio-container">
+        <div class="container">
             <h1 class="sub-title">My Work</h1>
             <div class="work-list">
                 <div class="work">
-                    <img src="Images/Work 1.jpg">
-                </div>
-                <div class="work">
-                    <img src="Images/Work 2.jpg">
-                </div>
-                <div class="work">
-                    <img src="Images/Work 3.jpg">
+                    <img src="Images/Work1.jpg">
+                    <div class="layer">
+                        <h3>My Portfolio</h3>
+                        <p>As of now my one & only own project is creating the web portfolio from the scratch using
+                            HTML,
+                            CSS, JS</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--Contact-->
+    <div id="contact">
+        <h1 class="sub-title">Contact Me</h1>
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <p><i class="fa-solid fa-envelope"></i> akhil.gaddam99@gmail.com</p>
+                    <p><i class="fa-solid fa-square-phone"></i> +1(519)-731-3090</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/akhilbilla098/"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://twitter.com/akhilrebel0987"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/akhil_gaddam098/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/akhil-gaddam-45ak99/"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="Images/Akhil_Gaddam_Resume.pdf" class="btn">Download Resume</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email ID" required>
+                        <textarea name="Message" rows="5" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright &copy; Akhil 2024</p>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxxSfiA7TLNpP0Q1EzjO0BnI9Vf18fnPiIPKxTRzBP9AjUMfjmoX6NWxuMcK0B_fAomgA/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg");
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "Thank you for contacting us!!!"
+                    setTimeout(function(){
+                        msg.innerHTML=""
+                    }, 5000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
 
 </body>
 
